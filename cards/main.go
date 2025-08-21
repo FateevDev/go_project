@@ -3,9 +3,9 @@ package main
 func main() {
 	cards := newDeck()
 
-	cards.print()
-}
+	hand, remainingDeck := deal(cards, 5)
 
-func newCard() string {
-	return "Five of Diamonds"
+	cards.print()
+	hand.print()
+	remainingDeck.print()
 }

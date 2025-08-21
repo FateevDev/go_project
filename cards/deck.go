@@ -14,6 +14,11 @@ func (d deck) append(card string) deck {
 	return append(d, card)
 }
 
+func deal(d deck, handSize int) (deck, deck) {
+	//newDeck := d[0:count]
+	return d[:handSize], d[handSize:]
+}
+
 func newDeck() deck {
 	cards := deck{}
 
