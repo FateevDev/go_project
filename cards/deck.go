@@ -9,3 +9,7 @@ func (d deck) print() {
 		fmt.Println(i, card)
 	}
 }
+
+func (d deck) append(card string) deck {
+	return append(d, card)
+}
