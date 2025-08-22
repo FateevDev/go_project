@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -19,6 +20,15 @@ func (d deck) append(card string) deck {
 
 func (d deck) toString() string {
 	return strings.Join(d, ",")
+}
+
+func (d deck) saveToFile(filename string) {
+	err := os.WriteFile(filename, []byte(d.toString()), 0644)
+
+	if err != nil {
+		fmt.Println("Error writing deck file:", err)
+		os.Exit(1)
+	}
 }
 
 func deal(d deck, handSize int) (deck, deck) {
@@ -39,4 +49,24 @@ func newDeck() deck {
 	}
 
 	return cards
+}
+
+func newDeckFromFile(filename string) deck {
+	bytes, err := os.ReadFile(filename)
+
+	if err != nil {
+		fmt.Println("Error reading deck file:", err)
+		os.Exit(1)
+	}
+
+	if len(bytes) == 0 {
+		fmt.Println("Deck file is empty")
+		os.Exit(1)
+	}
+
+	deckString := string(bytes)
+	deckSlice := strings.Split(deckString, ",")
+	deck := deck(deckSlice)
+
+	return deck
 }
