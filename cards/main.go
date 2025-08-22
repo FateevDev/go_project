@@ -3,9 +3,9 @@ package main
 func main() {
 	cards := newDeck()
 
-	cards.saveToFile("cards.txt")
+	cards.saveToFile("cards")
 
-	cards = newDeckFromFile("cards.txt")
+	cards = newDeckFromFile("cards")
 
 	//hand, remainingDeck := deal(cards, 5)
 	//

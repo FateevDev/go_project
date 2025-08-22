@@ -23,7 +23,7 @@ func (d deck) toString() string {
 }
 
 func (d deck) saveToFile(filename string) {
-	err := os.WriteFile(filename, []byte(d.toString()), 0644)
+	err := os.WriteFile(filename+".txt", []byte(d.toString()), 0644)
 
 	if err != nil {
 		fmt.Println("Error writing deck file:", err)
@@ -52,7 +52,7 @@ func newDeck() deck {
 }
 
 func newDeckFromFile(filename string) deck {
-	bytes, err := os.ReadFile(filename)
+	bytes, err := os.ReadFile(filename + ".txt")
 
 	if err != nil {
 		fmt.Println("Error reading deck file:", err)
@@ -64,8 +64,7 @@ func newDeckFromFile(filename string) deck {
 		os.Exit(1)
 	}
 
-	deckString := string(bytes)
-	deckSlice := strings.Split(deckString, ",")
+	deckSlice := strings.Split(string(bytes), ",")
 	deck := deck(deckSlice)
 
 	return deck
