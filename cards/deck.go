@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math/rand/v2"
 	"os"
 	"strings"
 )
 
 type deck []string
 
+// receiver of a method is the object on which the method is called
 func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i, card)
@@ -29,6 +31,10 @@ func (d deck) saveToFile(filename string) {
 		fmt.Println("Error writing deck file:", err)
 		os.Exit(1)
 	}
+}
+
+func (d deck) shuffle() {
+	rand.Shuffle(len(d), func(i, newPosition int) { d[i], d[newPosition] = d[newPosition], d[i] })
 }
 
 func deal(d deck, handSize int) (deck, deck) {
