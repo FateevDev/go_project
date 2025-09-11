@@ -42,8 +42,8 @@ func (p Person) fullName() string {
 	return p.firstName + " " + p.lastName + " (" + p.Gender + ") "
 }
 
-func (pointerToPerson *Person) setAge(age int) {
-	(*pointerToPerson).age = age
+func (p *Person) setAge(age int) {
+	p.age = age
 }
 
 func (p Person) print() {
