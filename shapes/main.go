@@ -7,7 +7,7 @@ import (
 )
 
 type Shape interface {
-	printArea() float64
+	getArea() float64
 }
 
 type Triangle struct {
@@ -21,7 +21,7 @@ type Square struct {
 
 func main() {
 	t := Triangle{
-		height: 10,
+		height: 9,
 		base:   3,
 	}
 
@@ -29,17 +29,16 @@ func main() {
 
 	printArea(t)
 	printArea(s)
-
 }
 
-func (t Triangle) printArea() float64 {
+func (t Triangle) getArea() float64 {
 	return 0.5 * t.height * t.base
 }
 
-func (s Square) printArea() float64 {
+func (s Square) getArea() float64 {
 	return math.Pow(s.sideLength, 2)
 }
 
 func printArea(s Shape) {
-	fmt.Println("shape", reflect.TypeOf(s).Name(), "has area: ", s.printArea())
+	fmt.Println("shape", reflect.TypeOf(s).Name(), "has area: ", s.getArea())
 }
