@@ -23,7 +23,7 @@ func main() {
 	file, err := os.Open(fileName)
 
 	if err != nil {
-		exitWithMessageAndErrorCode("File not found: "+fileName, 1)
+		exitWithMessageAndErrorCode(fmt.Sprintf("File not found: %s", fileName), 1)
 	}
 
 	_, err = io.Copy(os.Stdout, file)
